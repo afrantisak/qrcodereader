@@ -7,8 +7,15 @@
 
     <TextView
         android:id="@+id/myText"
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="QRCode result"
+        android:layout_width="300dp"
+        android:layout_height="50dp" />
 
+    <fragment
+        android:id="@+id/readqrcodefragment"
+        android:layout_below="@id/myText"
+        class="com.example.jc.qrcodereader.ReadQRCodeFragment"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        />
 </RelativeLayout>

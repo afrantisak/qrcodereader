@@ -13,52 +13,19 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import me.dm7.barcodescanner.zbar.Result;
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final String TAG = "MyActivity";
-    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+    private static final String TAG = "MainActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Camera.open();
-        readQRCode();
-    }
-
-
-    private void readQRCode() {
-
-        Log.d(TAG, "readQRCode() entry");
-        IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-
-        scanIntegrator.addExtra("SCAN_WIDTH", 800);
-        scanIntegrator.addExtra("SCAN_HEIGHT", 200);
-        scanIntegrator.addExtra("RESULT_DISPLAY_DURATION_MS", 90000L);
-        scanIntegrator.addExtra("PROMPT_MESSAGE", "Custom prompt to scan a product");
-        scanIntegrator.initiateScan(IntentIntegrator.QR_CODE_TYPES);
-
-
-    }
-
-    @Override public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.d(TAG, "onActivityResult");
-//retrieve scan result
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanningResult != null) {
-            Log.d(TAG, "got a scan result");
-            String scanContent = scanningResult.getContents();
-            String scanFormat = scanningResult.getFormatName();
-            TextView myText = (TextView)findViewById(R.id.myText);
-            myText.setText(scanContent);
-
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "No Scan data", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
     }
 
 
